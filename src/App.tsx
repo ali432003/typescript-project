@@ -4,6 +4,14 @@ import { useState, useEffect } from 'react'
 import "react-toastify/dist/ReactToastify.css";
 import { Slide, ToastContainer } from "react-toastify";
 import { ToastAlert } from "./utils/toast"
+import { Route,Routes } from 'react-router-dom';
+import NotFound from "./pages/NotFound"
+import Home from "./pages/Home"
+import Products from "./pages/Products"
+import SellProducts from "./pages/SellProduct"
+import Cart from "./pages/Cart"
+import ProductDetails from "./pages/ProductDetails"
+
 
 
 interface dataType {
@@ -15,6 +23,16 @@ interface dataType {
   images : string[]
   rating : number
 }
+
+/**
+ * Requirements
+ * 1. E-commerce website: Create a
+Full-stack e-commerce website in which
+users can buy and sell products online.
+The best example of such platforms can
+be Amazon, Flipkart, etc.
+ * 
+ */
 
 function App() {
 
@@ -38,11 +56,14 @@ function App() {
 
   return (
     <>
-      <div className="text-xl flex flex-wrap justify-center gap-2">
-        
-        hello world!
-        
-      </div>
+      <Routes>
+        <Route index element={<Home/>}/>
+        <Route path='/product' element={<Products/>}/>
+        <Route path='/product/:id' element={<ProductDetails/>}/>
+        <Route path='/sellProd' element={<SellProducts/>}/>
+        <Route path='/cart' element={<Cart/>}/>
+        <Route path="*" element={<NotFound/>} />
+      </Routes>
 
       <ToastContainer
         position="bottom-right"
